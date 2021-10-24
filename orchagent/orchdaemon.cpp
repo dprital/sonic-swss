@@ -395,8 +395,6 @@ bool OrchDaemon::init()
     m_orchList.push_back(gMlagOrch);
     m_orchList.push_back(gIsoGrpOrch);
     m_orchList.push_back(gFgNhgOrch);
-    m_orchList.push_back(mux_orch);
-    m_orchList.push_back(mux_cb_orch);
     m_orchList.push_back(mux_st_orch);
 
     if (m_fabricEnabled)

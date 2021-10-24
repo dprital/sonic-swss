@@ -5681,7 +5681,7 @@ void PortsOrch::doTask(NotificationConsumer &consumer)
 
             if (!getPort(id, port))
             {
-                SWSS_LOG_ERROR("Failed to get port object for port id 0x%" PRIx64 ", id);
+                SWSS_LOG_ERROR("Failed to get port object for port id 0x%" PRIx64, id);
                 continue;
             }
 
