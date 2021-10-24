@@ -44,6 +44,7 @@ NatOrch *gNatOrch;
 MlagOrch *gMlagOrch;
 IsoGrpOrch *gIsoGrpOrch;
 MACsecOrch *gMacsecOrch;
+DebugCounterOrch *gDebugCounterOrch;
 
 bool gIsNatSupported = false;
 
@@ -252,7 +253,7 @@ bool OrchDaemon::init()
         CFG_DEBUG_COUNTER_DROP_REASON_TABLE_NAME
     };
 
-    DebugCounterOrch *debug_counter_orch = new DebugCounterOrch(m_configDb, debug_counter_tables, 1000);
+    gDebugCounterOrch = new DebugCounterOrch(m_configDb, debug_counter_tables, 1000);
 
     const int natorch_base_pri = 50;
 
@@ -298,7 +299,7 @@ bool OrchDaemon::init()
      * when iterating ConsumerMap. This is ensured implicitly by the order of keys in ordered map.
      * For cases when Orch has to process tables in specific order, like PortsOrch during warm start, it has to override Orch::doTask()
      */
-    m_orchList = { gSwitchOrch, gCrmOrch, gPortsOrch, gBufferOrch, mux_orch, mux_cb_orch, gIntfsOrch, gNeighOrch, gNhgOrch, gRouteOrch, copp_orch, qos_orch, wm_orch, policer_orch, tunnel_decap_orch, sflow_orch, debug_counter_orch, gMacsecOrch};
+    m_orchList = { gSwitchOrch, gCrmOrch, gPortsOrch, gBufferOrch, mux_orch, mux_cb_orch, gIntfsOrch, gNeighOrch, gNhgOrch, gRouteOrch, copp_orch, qos_orch, wm_orch, policer_orch, tunnel_decap_orch, sflow_orch, gDebugCounterOrch, gMacsecOrch};
 
     bool initialize_dtel = false;
     if (platform == BFN_PLATFORM_SUBSTRING || platform == VS_PLATFORM_SUBSTRING)
@@ -394,6 +395,8 @@ bool OrchDaemon::init()
     m_orchList.push_back(gMlagOrch);
     m_orchList.push_back(gIsoGrpOrch);
     m_orchList.push_back(gFgNhgOrch);
+    m_orchList.push_back(mux_orch);
+    m_orchList.push_back(mux_cb_orch);
     m_orchList.push_back(mux_st_orch);
 
     if (m_fabricEnabled)
