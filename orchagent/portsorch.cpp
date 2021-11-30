@@ -2412,7 +2412,7 @@ void PortsOrch::deInitPort(string alias, sai_object_id_t port_id)
     if (!getPort(port_id, p))
     {
         SWSS_LOG_ERROR("Failed to get port object for port id 0x%" PRIx64, port_id);
-        p.m_port_id = port_id;
+        return;
     }
 
     /* remove port from flex_counter_table for updating counters  */
