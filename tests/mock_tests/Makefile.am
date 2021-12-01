@@ -32,7 +32,9 @@ tests_SOURCES = aclorch_ut.cpp \
                 mock_hiredis.cpp \
                 mock_redisreply.cpp \
                 bulker_ut.cpp \
+                fake_response_publisher.cpp \
                 $(top_srcdir)/lib/gearboxutils.cpp \
+                $(top_srcdir)/lib/subintf.cpp \
                 $(top_srcdir)/orchagent/orchdaemon.cpp \
                 $(top_srcdir)/orchagent/orch.cpp \
                 $(top_srcdir)/orchagent/notifications.cpp \
@@ -59,6 +61,7 @@ tests_SOURCES = aclorch_ut.cpp \
                 $(top_srcdir)/orchagent/pbh/pbhrule.cpp \
                 $(top_srcdir)/orchagent/pbhorch.cpp \
                 $(top_srcdir)/orchagent/saihelper.cpp \
+                $(top_srcdir)/orchagent/saiattr.cpp \
                 $(top_srcdir)/orchagent/switchorch.cpp \
                 $(top_srcdir)/orchagent/pfcwdorch.cpp \
                 $(top_srcdir)/orchagent/pfcactionhandler.cpp \
@@ -84,7 +87,7 @@ tests_SOURCES = aclorch_ut.cpp \
                 $(top_srcdir)/orchagent/bfdorch.cpp \
                 $(top_srcdir)/orchagent/srv6orch.cpp
 
-tests_SOURCES += $(FLEX_CTR_DIR)/flex_counter_manager.cpp $(FLEX_CTR_DIR)/flex_counter_stat_manager.cpp
+tests_SOURCES += $(FLEX_CTR_DIR)/flex_counter_manager.cpp $(FLEX_CTR_DIR)/flex_counter_stat_manager.cpp $(FLEX_CTR_DIR)/flow_counter_handler.cpp
 tests_SOURCES += $(DEBUG_CTR_DIR)/debug_counter.cpp $(DEBUG_CTR_DIR)/drop_counter.cpp
 
 tests_CFLAGS = $(DBGFLAGS) $(AM_CFLAGS) $(CFLAGS_COMMON) $(CFLAGS_GTEST) $(CFLAGS_SAI)

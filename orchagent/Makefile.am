@@ -25,7 +25,8 @@ dist_swss_DATA = \
 		 watermark_pg.lua \
 		 watermark_bufferpool.lua \
 		 lagids.lua \
-		 tunnel_rates.lua
+		 tunnel_rates.lua \
+		 trap_rates.lua
 
 bin_PROGRAMS = orchagent routeresync orchagent_restart_check
 
@@ -38,6 +39,7 @@ endif
 orchagent_SOURCES = \
             main.cpp \
             $(top_srcdir)/lib/gearboxutils.cpp \
+            $(top_srcdir)/lib/subintf.cpp \
             orchdaemon.cpp \
             orch.cpp \
             notifications.cpp \
@@ -64,6 +66,7 @@ orchagent_SOURCES = \
             pbh/pbhrule.cpp \
             pbhorch.cpp \
             saihelper.cpp \
+            saiattr.cpp \
             switchorch.cpp \
             pfcwdorch.cpp \
             pfcactionhandler.cpp \
@@ -87,9 +90,10 @@ orchagent_SOURCES = \
             macsecorch.cpp \
             lagid.cpp \
             bfdorch.cpp \
-            srv6orch.cpp
+            srv6orch.cpp \
+            response_publisher.cpp
 
-orchagent_SOURCES += flex_counter/flex_counter_manager.cpp flex_counter/flex_counter_stat_manager.cpp
+orchagent_SOURCES += flex_counter/flex_counter_manager.cpp flex_counter/flex_counter_stat_manager.cpp flex_counter/flow_counter_handler.cpp
 orchagent_SOURCES += debug_counter/debug_counter.cpp debug_counter/drop_counter.cpp
 
 orchagent_CFLAGS = $(DBGFLAGS) $(AM_CFLAGS) $(CFLAGS_COMMON) $(CFLAGS_SAI)
