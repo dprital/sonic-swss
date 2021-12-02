@@ -381,9 +381,9 @@ class TestFlexCounters(object):
         self.setup_dbs(dvs)
         
         # set flex counter
-        counter_key = counter_type_dict['queue_counter']['key']
-        counter_stat = counter_type_dict['queue_counter']['group_name']
-        counter_map = counter_type_dict['queue_counter']['name_map']
+        counter_key = counter_group_meta['queue_counter']['key']
+        counter_stat = counter_group_meta['queue_counter']['group_name']
+        counter_map = counter_group_meta['queue_counter']['name_map']
         self.enable_flex_counter_group(counter_key, counter_map)
         
         # receive port info
