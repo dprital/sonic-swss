@@ -384,7 +384,7 @@ class TestFlexCounters(object):
         counter_key = counter_group_meta['queue_counter']['key']
         counter_stat = counter_group_meta['queue_counter']['group_name']
         counter_map = counter_group_meta['queue_counter']['name_map']
-        self.enable_flex_counter_group(counter_key, counter_map)
+        self.set_flex_counter_group_status(counter_key, counter_map)
         
         # receive port info
         fvs = self.config_db.get_entry("PORT", PORT)
