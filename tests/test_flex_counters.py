@@ -8,7 +8,8 @@ NUMBER_OF_RETRIES         =   10
 CPU_PORT_OID              = "0x0"
 
 # port to be added and removed
-PORT = "Ethernet0"
+PORT     = "Ethernet0"
+PORT_MAP = "COUNTERS_PORT_NAME_MAP"
 
 counter_group_meta = {
     'port_counter': {
