@@ -2438,7 +2438,7 @@ void PortsOrch::deInitPort(string alias, sai_object_id_t port_id)
     }
 
     /* remove port name map from counter table */
-    m_counter_db->hdel(COUNTERS_PORT_NAME_MAP, alias);
+    m_counterTable->hdel("", alias);
 
     /* Remove the associated port serdes attribute */
     removePortSerdesAttribute(p.m_port_id);
@@ -4940,7 +4940,7 @@ bool PortsOrch::addLag(string lag_alias, uint32_t spa_id, int32_t switch_id)
     auto lagport = m_portList.find(lag_alias);
     if (lagport != m_portList.end())
     {
-        /* The deletion of bridgeport attached to the lag may still be 
+        /* The deletion of bridgeport attached to the lag may still be
          * pending due to fdb entries still present on the lag. Wait
          * until the cleanup is done.
          */
@@ -5431,10 +5431,10 @@ void PortsOrch::removeQueueMapPerPort(const Port& port)
         }
     }
 
-    m_counter_db->hdel(COUNTERS_QUEUE_NAME_MAP, queueVector);
-    m_counter_db->hdel(COUNTERS_QUEUE_PORT_MAP, queuePortVector);
-    m_counter_db->hdel(COUNTERS_QUEUE_INDEX_MAP, queueIndexVector);
-    m_counter_db->hdel(COUNTERS_QUEUE_TYPE_MAP, queueTypeVector);
+    m_queueTable->hdel("", queueVector);
+    m_queuePortTable->hdel("", queuePortVector);
+    m_queueIndexTable->hdel("", queueIndexVector);
+    m_queueTypeTable->hdel("", queueTypeVector);
 
     for (size_t queueIndex = 0; queueIndex < port.m_queue_ids.size(); ++queueIndex)
     {
@@ -5553,9 +5553,9 @@ void PortsOrch::removePriorityGroupMapPerPort(const Port& port)
         pgIndexVector.emplace_back(id);
     }
 
-    m_counter_db->hdel(COUNTERS_PG_NAME_MAP, pgVector);
-    m_counter_db->hdel(COUNTERS_PG_PORT_MAP, pgPortVector);
-    m_counter_db->hdel(COUNTERS_PG_INDEX_MAP, pgIndexVector);
+    m_pgTable->hdel("", pgVector);
+    m_pgPortTable->hdel("", pgPortVector);
+    m_pgIndexTable->hdel("", pgIndexVector);
 
     for (size_t pgIndex = 0; pgIndex < port.m_priority_group_ids.size(); ++pgIndex)
     {
