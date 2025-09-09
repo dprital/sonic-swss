@@ -66,10 +66,12 @@ sai_attr_id_t SaiAttrWrapper::getAttrId() const
 
 void SaiAttrWrapper::swap(SaiAttrWrapper&& other)
 {
-    std::swap(m_objectType, other.m_objectType);
-    std::swap(m_meta, other.m_meta);
-    std::swap(m_attr, other.m_attr);
-    std::swap(m_serializedAttr, other.m_serializedAttr);
+    m_objectType = other.m_objectType;
+    m_meta = other.m_meta;
+    m_attr = other.m_attr;
+    m_serializedAttr = other.m_serializedAttr;
+    other.m_attr = sai_attribute_t{};
+    other.m_serializedAttr.clear();
 }
 
 void SaiAttrWrapper::init(
